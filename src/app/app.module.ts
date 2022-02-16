@@ -6,11 +6,12 @@ import { PrincipalComponent } from './principal/principal.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HijoprComponent } from './hijopr/hijopr.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CSeccion2Component } from './c-seccion2/c-seccion2.component';
 import { CSeccion3Component } from './c-seccion3/c-seccion3.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { ProductoService } from './servicio/producto.service';
 
 const routes: Routes = [
   {path:'',component:CSeccion2Component},
@@ -33,9 +34,13 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    ProductoService
+  ],
   bootstrap: [PrincipalComponent]
 })
 export class AppModule { }

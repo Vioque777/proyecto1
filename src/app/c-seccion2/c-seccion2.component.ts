@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -8,17 +9,31 @@ import { ActivatedRoute} from '@angular/router';
 })
 export class CSeccion2Component implements OnInit {
 
-  nombrePersona: string = '';
+  formUsuarios:FormGroup = new FormGroup({
+    usuario: new FormControl('', [Validators.required]),
+    comentarios: new FormControl('', [Validators.required, Validators.minLength(10)])
+  });
+  //nombrePersona: string = '';
 
-  constructor(private route:ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params)=> {
-      if([params['nombre'] !== null]){
-        this.nombrePersona = params['nombre'];
-      }
 
-    });
+    // this.formUsuarios = this.formBuilder.group({
+      
+    // });
+    // this.route.params.subscribe((params)=> {
+    //   if([params['nombre'] !== null]){
+    //     this.nombrePersona = params['nombre'];
+    //   }
+
+    // });
+  }
+
+  get f(){return this.formUsuarios.controls};
+
+  habilitarBoton(){
+    console.log ("El usuario '"+this.f['usuario'].value+"' ha escrito el comentario: '"+this.f['comentarios'].value+"'.");
   }
 
 }
