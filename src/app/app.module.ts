@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PrincipalComponent } from './principal/principal.component';
@@ -12,13 +13,16 @@ import { CSeccion3Component } from './c-seccion3/c-seccion3.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { ProductoService } from './servicio/producto.service';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuariosService } from './servicio/usuarios.service';
 
 const routes: Routes = [
   {path:'',component:CSeccion2Component},
   {path:'seccion2',component:CSeccion2Component},
   {path:'seccion3',component:CSeccion3Component},
-  {path:'seccion2/:nombre',component:CSeccion2Component},
-  {path:'seccion3/:ciudad/:poblacion',component:CSeccion3Component},
+  {path:'seccion2:nombre',component:CSeccion2Component},
+  {path:'seccion3:ciudad/:poblacion',component:CSeccion3Component},
+  {path:'usuario',component:UsuarioComponent},
   {path:'**',component: CSeccion2Component},
 ]
 @NgModule({
@@ -29,17 +33,20 @@ const routes: Routes = [
     FooterComponent,
     HijoprComponent,
     CSeccion2Component,
-    CSeccion3Component
+    CSeccion3Component,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
-    ProductoService
+    ProductoService,
+    UsuariosService
   ],
   bootstrap: [PrincipalComponent]
 })
